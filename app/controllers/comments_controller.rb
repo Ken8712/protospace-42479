@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     else
       @prototype = Prototype.find(params[:prototype_id])
       @user = User.find(@prototype.user_id)
+      @comments = @prototype.comments.includes(:user)
       render "/prototypes/show", status: :unprocessable_entity
     end
   end
